@@ -81,9 +81,11 @@ It also updates `seqcmd-start-position'."
 
 (with-eval-after-load "org"
   (seqcmd-define-command
-   org-seqcmd-home org-beginning-of-line beginning-of-buffer seqcmd-return)
+   seqcmd-org-home org-beginning-of-line beginning-of-buffer seqcmd-return)
   (seqcmd-define-command
-   org-seqcmd-end org-end-of-line end-of-buffer seqcmd-return))
+   seqcmd-org-end org-end-of-line end-of-buffer seqcmd-return)
+  (autoload 'seqcmd-org-home "seqcmd")
+  (autoload 'seqcmd-org-end "seqcmd"))
 
 ;;;###autoload
 (progn
@@ -106,8 +108,8 @@ If you use `org-mode', rebind C-a and C-e."
   (with-eval-after-load "org"
     (add-hook 'org-mode-hook
               '(lambda ()
-                 (define-key org-mode-map "\C-a" 'org-seqcmd-home)
-                 (define-key org-mode-map "\C-e" 'org-seqcmd-end)))))
+                 (define-key org-mode-map "\C-a" 'seqcmd-org-home)
+                 (define-key org-mode-map "\C-e" 'seqcmd-org-end)))))
 
 (provide 'seqcmd)
 
